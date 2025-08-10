@@ -1,0 +1,9 @@
+{
+  "name": "memeforge-workers",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@tsndr/cloudflare-worker-jwt": "^2.5.3",
+    "canvas": "^2.11.2"
+  }
+}

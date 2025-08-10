@@ -1,0 +1,50 @@
+# Cloudflare Workers configuration for MemeForge
+name = "memeforge-api"
+main = "workers/index.js"
+compatibility_date = "2024-01-01"
+
+# Environment variables (set these in Cloudflare Workers dashboard)
+[vars]
+# JWT_SECRET = "your-super-secret-jwt-key-change-this-in-production"
+# RATE_LIMIT_REQUESTS = "10"
+# RATE_LIMIT_WINDOW = "60"
+
+# KV namespace for rate limiting (optional)
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "your-kv-namespace-id"
+# preview_id = "your-preview-kv-namespace-id"
+
+# D1 database for user storage (optional, for production)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "memeforge-db"
+# database_id = "your-database-id"
+
+[build]
+command = "npm run build"
+
+# Routes configuration
+[[routes]]
+pattern = "api.memeforge.com/*"
+zone_name = "memeforge.com"
+
+# Development configuration
+[env.development]
+name = "memeforge-api-dev"
+
+[env.development.vars]
+# Development environment variables
+# JWT_SECRET = "dev-secret-key"
+# RATE_LIMIT_REQUESTS = "20"
+# RATE_LIMIT_WINDOW = "60"
+
+# Production configuration
+[env.production]
+name = "memeforge-api-prod"
+
+[env.production.vars]
+# Production environment variables (set in dashboard)
+# JWT_SECRET = "production-secret-key"
+# RATE_LIMIT_REQUESTS = "10"
+# RATE_LIMIT_WINDOW = "60"
